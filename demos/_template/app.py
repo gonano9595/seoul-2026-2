@@ -76,7 +76,7 @@ df = read_csv_any(uploaded)
 
 
 # ──────────────────────────────────────────────────────────────
-# 기능 1. 표 + 상단 요약
+# 기능 1. 표 + 응답자 수 메트릭
 # ──────────────────────────────────────────────────────────────
 st.subheader("① 데이터 확인")
 st.metric("응답자 수", len(df))
@@ -148,7 +148,9 @@ if summary_button:
             summary_df["점수대"] = pd.Categorical(
                 summary_df["점수대"], categories=ordered_bands, ordered=True
             )
-            summary_df = summary_df.sort_values(["점수대", "문항", "점수"]).reset_index(drop=True)
+            summary_df = summary_df.sort_values(["점수대", "문항", "점수"]).reset_index(
+                drop=True
+            )
 
             st.write("모든 숫자형 문항을 점수대별로 재배치한 결과입니다.")
             st.dataframe(summary_df, use_container_width=True, hide_index=True)
